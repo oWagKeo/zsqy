@@ -9,10 +9,8 @@
 // +----------------------------------------------------------------------
 namespace app\admin\controller;
 
-use app\admin\model\Node;
 use app\admin\model\NodeModel;
 use app\admin\model\RoleModel;
-use app\admin\model\UserType;
 
 class Role extends Base
 {
