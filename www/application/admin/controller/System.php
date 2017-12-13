@@ -9,10 +9,10 @@
 // +----------------------------------------------------------------------
 namespace app\admin\controller;
 
-class Data extends Base
+class System extends Base
 {
     // 备份首页列表
-    public function index()
+    public function indexData()
     {
         $tables = db()->query('show tables');
         foreach($tables as $key=>$vo){
@@ -96,13 +96,13 @@ class Data extends Base
     {
         return [
             '备份' => [
-                'auth' => 'data/importdata',
+                'auth' => 'system/importdata',
                 'href' => "javascript:importData('" .$table ."')",
                 'btnStyle' => 'primary',
                 'icon' => 'fa fa-tasks'
             ],
             '还原' => [
-                'auth' => 'data/backdata',
+                'auth' => 'system/backdata',
                 'href' => "javascript:backData('" .$table ."')",
                 'btnStyle' => 'info',
                 'icon' => 'fa fa-retweet'

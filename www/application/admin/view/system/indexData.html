@@ -85,7 +85,7 @@
             skin: 'layui-layer-demo', //加上边框
             content: $('#wait')
         });
-        $.getJSON("{:url('data/importData')}", {'table' : table}, function(res){
+        $.getJSON("{:url('system/importData')}", {'table' : table}, function(res){
             layer.close(index);
             layer.alert('备份成功！', {icon: 1}, function(){
                 window.location.reload();
@@ -94,23 +94,26 @@
     }
 
     function backData(table){
-        index = layer.open({
-            type: 1,
-            area:'400px',
-            title:'正在操作',
-            skin: 'layui-layer-demo', //加上边框
-            content: $('#wait')
+        layer.confirm('确认进行数据还原?你可能丢失现有数据！', {icon: 3, title:'提示'}, function(re){
+            index = layer.open({
+                type: 1,
+                area:'400px',
+                title:'正在操作',
+                skin: 'layui-layer-demo', //加上边框
+                content: $('#wait')
+            });
+            $.getJSON("{:url('system/backData')}", {'table' : table}, function(res){
+                layer.close(index);
+                if(res.code == 1){
+                    layer.alert('还原成功！', {icon: 1}, function(){
+                        window.location.reload();
+                    });
+                }else{
+                    layer.alert(res.msg, {icon: 2});
+                }
+            });
+            layer.close(re);
         });
-        $.getJSON("{:url('data/backData')}", {'table' : table}, function(res){
-            layer.close(index);
-            if(res.code == 1){
-                layer.alert('还原成功！', {icon: 1}, function(){
-                    window.location.reload();
-                });
-            }else{
-                layer.alert(res.msg, {icon: 2});
-            }
-        })
     }
 </script>
 </body>

@@ -11,6 +11,8 @@
     <link href="__CSS__/animate.min.css" rel="stylesheet">
     <link href="__CSS__/style.min.css?v=4.1.0" rel="stylesheet">
     <link href="__CSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <script src="__JS__/jquery.min.js?v=2.1.4"></script>
+    <script src="__JS__/plugins/layer/layer.min.js"></script>
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -22,9 +24,9 @@
         <div class="ibox-content">
             <div class="form-group clearfix col-sm-1">
                 {if authCheck('member/memberAdd') }
-                <a href="{:url('member/memberAdd')}">
-                    <button class="btn btn-outline btn-primary" type="button">添加会员</button>
-                </a>
+                <!--<a href="{:url('member/memberAdd')}">-->
+                    <!--<button class="btn btn-outline btn-primary" type="button">添加会员</button>-->
+                <!--</a>-->
                 {/if}
             </div>
             <!--搜索框开始-->
@@ -65,9 +67,11 @@
                                     <td>禁用</td>
                                 {/eq}
                                 <td>
-                                    <a href="javascript:memberDel(2)">
+                                    {if authCheck('member/member_del') }
+                                    <a href="javascript:memberDel({$v.id})">
                                      <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> 删除</button>
                                     </a>
+                                    {/if}
                                 </td>
                             </tr>
                         {/foreach}
@@ -84,5 +88,21 @@
 </div>
 <!-- End Panel Other -->
 </div>
+<script type="text/javascript">
+    function memberDel(id){
+        layer.confirm('确认删除此会员?', {icon: 3, title:'提示'}, function(index){
+            $.getJSON("{:url('member_del')}", {'id' : id}, function(res){
+                if(1 == res.code){
+                    layer.alert(res.msg, {title: '友情提示', icon: 1, closeBtn: 0}, function(){
+                        window.location.reload();
+                    });
+                }else{
+                    layer.alert(res.msg, {title: '友情提示', icon: 2});
+                }
+            });
+            layer.close(index);
+        })
+    }
+</script>
 </body>
 </html>

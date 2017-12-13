@@ -9,6 +9,7 @@
 namespace app\admin\model;
 
 
+use think\exception\PDOException;
 use think\Model;
 
 class MemberModel extends Model
@@ -26,6 +27,20 @@ class MemberModel extends Model
      */
     public function getMemberList($where = null , $feild = '*',$order = 'id desc',$page = '15'){
        return  $this->where( $where )->field($feild)->order($order)->paginate($page);
+    }
+
+    /**
+     * 根据id删除会员
+     * @param $id
+     * @return array
+     */
+    public function delMemberById( $id ){
+        try{
+            $this->where('id',$id)->delete();
+            return msg(1, '', '删除会员成功');
+        }catch( PDOException $e ){
+            return msg(-1, '', $e->getMessage());
+        }
     }
 
 }

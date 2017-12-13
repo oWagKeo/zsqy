@@ -28,5 +28,13 @@ class Member extends Base
         $this->assign('get',$_GET);
         return $this->fetch();
     }
+    // 删除用户
+    public function member_del()
+    {
+        $id = input('param.id');
+        $member = new MemberModel();
+        $re = $member->delMemberById($id);
+        return json($re);
+    }
 
 }
