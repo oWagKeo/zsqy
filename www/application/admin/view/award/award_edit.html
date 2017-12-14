@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>添加奖品</title>
+    <title>编辑奖品</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -18,25 +18,26 @@
         <div class="col-sm-8">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>添加奖品</h5>
+                    <h5>编辑奖品</h5>
                 </div>
                 <div class="ibox-content">
-                    <form class="form-horizontal m-t" id="commentForm" method="post" action="{:url('award/award_add')}">
+                    <form class="form-horizontal m-t" id="commentForm" method="post" action="{:url('award/award_edit')}">
+                        <input type="hidden" name="id" value="{$info.id}">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">奖品名称：</label>
                             <div class="input-group col-sm-5">
-                                <input id="name" type="text" class="form-control" name="name" required="">
+                                <input id="name" type="text" class="form-control" name="name" value="{$info.name}" required="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">奖品描述：</label>
                             <div class="input-group col-sm-5">
-                                <textarea id="description" class="form-control" name="desc" required=""></textarea>
+                                <textarea id="description" class="form-control" name="desc" required="">{$info.desc}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">缩略图：</label>
-                            <input name="thumd" id="thumd" type="hidden"/>
+                            <input name="thumd" id="thumd" value="{$info.thumd}" type="hidden"/>
                             <div class="form-inline">
                                 <div class="input-group col-sm-2">
                                     <button type="button" class="layui-btn" id="test1">
@@ -44,17 +45,19 @@
                                     </button>
                                 </div>
                                 <div class="input-group col-sm-3">
-                                    <div id="sm"></div>
+                                    <div id="sm">
+                                        <img src="{$info.thumd}" style="width:40px;height: 40px;"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">奖品类型：</label>
                             <div class="input-group col-sm-4">
-                                <select class="form-control" name="type" required="">
+                                <select class="form-control" name="type" value="{$info.type}" required="">
                                     <option value="">请选择</option>
                                     {foreach $type as $k=>$v }
-                                        <option value="{$k}">{$v}</option>
+                                        <option value="{$k}" {if $k==$info['type']}selected{/if}>{$v}</option>
                                     {/foreach}
                                 </select>
                             </div>
@@ -62,24 +65,28 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">奖品数量：</label>
                             <div class="input-group col-sm-5">
-                                <input id="num" type="text" class="form-control" name="num" required="">
+                                <input id="num" type="text" class="form-control" value="{$info.num}" name="num" required="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">奖品概率(万分之)：</label>
                             <div class="input-group col-sm-5">
-                                <input id="chance" type="text" class="form-control" name="chance" required="">
+                                <input id="chance" type="text" class="form-control" value="{$info.chance}" name="chance" required="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">对应api的id：</label>
                             <div class="input-group col-sm-5">
-                                <input id="api_id" type="text" class="form-control" name="api_id">
+                                <input id="api_id" type="text" class="form-control" value="{$info.api_id}" name="api_id">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-8">
                                 <button class="btn btn-primary" type="submit">确认提交</button>
+                                &nbsp; &nbsp; &nbsp;
+                                <a href="/admin/award/award_list">
+                                    <button class="btn btn-default" type="button">取消</button>
+                                </a>
                             </div>
                         </div>
                     </form>

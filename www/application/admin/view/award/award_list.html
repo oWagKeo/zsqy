@@ -38,7 +38,7 @@
                         <th>奖品名称</th>
                         <th>奖品介绍</th>
                         <th>数量</th>
-                        <th>中奖概率</th>
+                        <th>中奖概率<br/>(万分之)</th>
                         <th>奖品类型</th>
                         <th>添加时间</th>
                         <th>修改时间</th>
@@ -55,13 +55,13 @@
                             <td>{$v.desc}</td>
                             <td>{$v.num}</td>
                             <td>{$v.chance}</td>
-                            <td>{$v.type}</td>
+                            <td>{$type[$v.type]}</td>
                             <td>{$v.add_time|date='Y-m-d',###}</td>
                             <td>{$v.update_time|date='Y-m-d',###}</td>
                             <td>{$v.user_name}</td>
                             <td>
                                 {if authCheck('award/award_edit') }
-                                <a href="#">
+                                <a href="/admin/award/award_edit/id/{$v.id}">
                                     <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-paste"></i>编辑</button>
                                 </a>
                                 {/if}
