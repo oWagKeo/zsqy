@@ -89,6 +89,13 @@ class Award extends Base
     }
 
     /**
+     * 中奖记录
+     */
+    public function award_log(){
+        return $this->fetch();
+    }
+
+    /**
      * 上传缩略图片
      */
     public function uploadImg(){
