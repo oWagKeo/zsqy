@@ -35,6 +35,12 @@ class AwardModel extends Model
         return $this->where('id',$id)->find();
     }
 
+    /**
+     * 编辑
+     * @param $id
+     * @param $param
+     * @return array
+     */
     public function editAwardById( $id,$param ){
         try{
             $rule = [
