@@ -13,6 +13,14 @@ use app\admin\model\CouponsModel;
 
 class Storecoupons extends  Base
 {
+
+    /**
+     * 门店列表
+     */
+    public function store_list(){
+
+    }
+
     /**
      * 优惠券管理列表
      */
