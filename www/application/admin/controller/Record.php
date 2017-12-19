@@ -76,7 +76,7 @@ class Record extends Base
         $PHPSheet->setCellValue('A1','id')
             ->setCellValue('B1','姓名')
             ->setCellValue('C1','电话')
-            ->setCellValue('E1','添加时间');
+            ->setCellValue('D1','添加时间');
         foreach( $data as $k => $v ){
             $key = $k+2;
             $PHPSheet->setCellValue('A'.$key , $v['id'])
@@ -155,7 +155,7 @@ class Record extends Base
         $PHPSheet->setCellValue('A1','id')
             ->setCellValue('B1','姓名')
             ->setCellValue('C1','电话')
-            ->setCellValue('E1','添加时间');
+            ->setCellValue('D1','添加时间');
         foreach( $data as $k => $v ){
             $key = $k+2;
             $PHPSheet->setCellValue('A'.$key , $v['id'])
