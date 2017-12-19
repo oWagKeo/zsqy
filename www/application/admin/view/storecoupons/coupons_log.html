@@ -53,6 +53,7 @@
                         <th>状态</th>
                         </thead>
                         <tbody>
+                        {if $list->total()!=0}
                         {foreach $list as $v }
                         <tr>
                             <td>{$v.id}</td>
@@ -66,6 +67,11 @@
                             {/eq}
                         </tr>
                         {/foreach}
+                        {else/}
+                        <tr style="text-align: center">
+                            <td colspan="5">没有找到匹配的记录</td>
+                        </tr>
+                        {/if}
                         </tbody>
                     </table>
                     <div style="text-align: center">
