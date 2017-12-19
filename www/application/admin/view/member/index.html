@@ -55,6 +55,7 @@
                         <th data-field="operate">操作</th>
                         </thead>
                         <tbody>
+                        {if $list->total()!=0}
                         {foreach $list as $v }
                             <tr>
                                 <td>{$v.id}</td>
@@ -75,6 +76,11 @@
                                 </td>
                             </tr>
                         {/foreach}
+                        {else /}
+                        <tr style="text-align: center">
+                            <td colspan="6">没有找到匹配的记录</td>
+                        </tr>
+                        {/if}
                         </tbody>
                     </table>
                     <div style="text-align: center">

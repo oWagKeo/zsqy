@@ -9,6 +9,7 @@
 namespace app\admin\model;
 
 
+use think\Db;
 use think\Model;
 
 class CouponsModel extends Model
@@ -21,9 +22,26 @@ class CouponsModel extends Model
      * @param int $page
      * @return \think\Paginator
      */
-    public function getCouponsList( $where = null , $page = 15 ){
-        return $this->field( $this->table.'.*,user_name')->join('zs_user',$this->table.'.user_id=zs_user.id','LEFT')->where($where)->paginate($page);
+    public function getCouponsList( $where = null,$field='' ,$order = 'a.id desc', $page = 15 ){
+        if( $field=='' ){
+            $field = 'a.*,user_name';
+        }
+        return $this->alias('a')->field( $field)->join('zs_user b','a.user_id=b.id','LEFT')->where($where)->order($order)->paginate($page);
 //        return $this->where($where)->paginate($page);
+    }
+
+    /**
+     * 获取列表
+     * @param null $where
+     * @param string $field
+     * @param string $order
+     * @return false|\PDOStatement|string|\think\Collection
+     */
+    public function getCouponsAll( $where = null,$field='' ,$order = 'a.id desc' ){
+        if( $field=='' ){
+            $field = 'a.*,user_name';
+        }
+        return Db::name('store_coupons')->alias('a')->field( $field)->join('zs_user b','a.user_id=b.id','LEFT')->where($where)->order($order)->select();
     }
 
     /**

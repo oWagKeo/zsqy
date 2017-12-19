@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>门店优惠券列表</title>
+    <title>门店列表</title>
     <link rel="shortcut icon" href="favicon.ico">
     <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -19,13 +19,13 @@
     <!-- Panel Other -->
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>门店优惠券列表</h5>
+            <h5>门店列表</h5>
         </div>
         <div class="ibox-content">
             <div class="form-group clearfix col-sm-1">
-                {if authCheck('storecoupons/coupons_add') }
-                <a href="{:url('storecoupons/coupons_add')}">
-                <button class="btn btn-outline btn-primary" type="button">添加优惠券</button>
+                {if authCheck('storecoupons/store_add') }
+                <a href="{:url('storecoupons/store_add')}">
+                    <button class="btn btn-outline btn-primary" type="button">添加门店</button>
                 </a>
                 {/if}
             </div>
@@ -47,13 +47,13 @@
                 <div class="example">
                     <table id="cusTable" class="table table-hover table-striped">
                         <thead>
-                        <th>优惠券ID</th>
-                        <th>优惠券名称</th>
+                        <th>门店ID</th>
+                        <th>门店名称</th>
                         <th>缩略图</th>
-                        <th>优惠券描述</th>
+                        <th>门店地址</th>
+                        <th>所属优惠券</th>
                         <th>添加时间</th>
-                        <th>开始时间</th>
-                        <th>结束时间</th>
+
                         <th>管理员</th>
                         <th>状态</th>
                         <th>操作</th>
@@ -62,12 +62,15 @@
                         {foreach $list as $v }
                         <tr>
                             <td>{$v.id}</td>
-                            <td>{$v.name}</td>
-                            <td><img src="{$v.thumd}" style="width: 40px; height: 40px;"></td>
-                            <td>{$v.desc}</td>
+                            <td>{$v.store_name}
+                            {if !empty($v.store_thumd)}
+                            <td><img src="{$v.store_thumd}" style="width: 40px; height: 40px;"></td>
+                            {else/}
+                            <td></td>
+                            {/if}
+                            <td>{$v.store_address}</td>
+                            <td>{$v.c_name}</td>
                             <td>{$v.add_time|date='Y-m-d',###}</td>
-                            <td>{$v.start_time|date='Y-m-d',###}</td>
-                            <td>{$v.end_time|date='Y-m-d',###}</td>
                             <td>{$v.user_name}</td>
                             {eq name="v.status" value="1"}
                             <td>正常</td>
@@ -75,13 +78,13 @@
                             <td>禁用</td>
                             {/eq}
                             <td>
-                                {if authCheck('storecoupons/coupons_edit') }
-                                <a href="/admin/Storecoupons/coupons_edit/id/{$v.id}">
+                                {if authCheck('storecoupons/store_edit') }
+                                <a href="/admin/Storecoupons/store_edit/id/{$v.id}">
                                     <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-paste"></i>编辑</button>
                                 </a>
                                 {/if}
                                 {if authCheck('storecoupons/coupons_del') }
-                                <a href="javascript:couponsDel({$v.id})">
+                                <a href="javascript:storeDel({$v.id})">
                                     <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> 删除</button>
                                 </a>
                                 {/if}
@@ -102,9 +105,9 @@
 <!-- End Panel Other -->
 </div>
 <script type="text/javascript">
-    function couponsDel(id){
-        layer.confirm('确认删除此优惠券?', {icon: 3, title:'提示'}, function(index){
-            $.getJSON("{:url('coupons_del')}", {'id' : id}, function(res){
+    function storeDel(id){
+        layer.confirm('确认删除此门店?', {icon: 3, title:'提示'}, function(index){
+            $.getJSON("{:url('store_del')}", {'id' : id}, function(res){
                 if(1 == res.code){
                     layer.alert(res.msg, {title: '友情提示', icon: 1, closeBtn: 0}, function(){
                         window.location.reload();
