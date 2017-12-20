@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fac0111f19669a0ce930d45243770c30",
+    "content-hash": "6cdcd9f789c460688275af5478e50363",
     "packages": [
         {
             "name": "phpoffice/phpexcel",
@@ -115,6 +115,42 @@
             "time": "2017-07-18T08:19:42+00:00"
         },
         {
+            "name": "topthink/think-captcha",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/top-think/think-captcha.git",
+                "reference": "9572406f5ed6637f0e12f6106514d488e2cc1a43"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/top-think/think-captcha/9572406f5ed6637f0e12f6106514d488e2cc1a43.zip",
+                "reference": "9572406f5ed6637f0e12f6106514d488e2cc1a43",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "think\\captcha\\": "src/"
+                },
+                "files": [
+                    "src/helper.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "yunwuxin",
+                    "email": "448901948@qq.com"
+                }
+            ],
+            "description": "captcha package for thinkphp5",
+            "time": "2016-12-28T08:22:04+00:00"
+        },
+        {
             "name": "topthink/think-installer",
             "version": "v1.0.12",
             "source": {
@@ -160,7 +196,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "phpoffice/phpexcel": 20
+        "phpoffice/phpexcel": 20,
+        "topthink/think-captcha": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

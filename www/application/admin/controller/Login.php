@@ -11,6 +11,7 @@ namespace app\admin\controller;
 
 use app\admin\model\RoleModel;
 use app\admin\model\UserModel;
+use think\captcha\Captcha;
 use think\Controller;
 use org\Verify;
 
@@ -34,11 +35,14 @@ class Login extends Controller
             return json(msg(-1, '', $result));
         }
 
-        $verify = new Verify();
-        if (!$verify->check($code)) {
+//        $verify = new Verify();
+//        if (!$verify->check($code)) {
+//            return json(msg(-2, '', '验证码错误'));
+//        }
+        $captcha = new Captcha();
+        if (!$captcha->check($code)) {
             return json(msg(-2, '', '验证码错误'));
         }
-
         $userModel = new UserModel();
         $hasUser = $userModel->findUserByName($userName);
         if(empty($hasUser)){
@@ -81,13 +85,23 @@ class Login extends Controller
     // 验证码
     public function checkVerify()
     {
-        $verify = new Verify();
-        $verify->imageH = 32;
-        $verify->imageW = 100;
-        $verify->length = 4;
-        $verify->useNoise = false;
-        $verify->fontSize = 14;
-        return $verify->entry();
+//        $verify = new Verify();
+//        $verify->imageH = 32;
+//        $verify->imageW = 100;
+//        $verify->length = 4;
+//        $verify->useNoise = false;
+//        $verify->fontSize = 14;
+//        return $verify->entry();
+        $config = [
+            'imageH'   => 32,
+            'imageW'   => 100,
+            'fontttf'  => '5.ttf',
+            'length'   => 4,
+            'useNoise' => false,
+            'fontSize' => 14
+        ];
+        $v = new Captcha($config);
+        return $v->entry();
     }
 
     // 退出操作

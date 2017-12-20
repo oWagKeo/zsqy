@@ -153,5 +153,43 @@
             "xls",
             "xlsx"
         ]
+    },
+    {
+        "name": "topthink/think-captcha",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/top-think/think-captcha.git",
+            "reference": "9572406f5ed6637f0e12f6106514d488e2cc1a43"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/top-think/think-captcha/9572406f5ed6637f0e12f6106514d488e2cc1a43.zip",
+            "reference": "9572406f5ed6637f0e12f6106514d488e2cc1a43",
+            "shasum": ""
+        },
+        "time": "2016-12-28T08:22:04+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "think\\captcha\\": "src/"
+            },
+            "files": [
+                "src/helper.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "yunwuxin",
+                "email": "448901948@qq.com"
+            }
+        ],
+        "description": "captcha package for thinkphp5"
     }
 ]
