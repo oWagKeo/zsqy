@@ -97,7 +97,7 @@ class Login extends Controller
             'imageW'   => 100,
             'fontttf'  => '5.ttf',
             'length'   => 4,
-            'useNoise' => false,
+//            'useNoise' => false,
             'fontSize' => 14
         ];
         $v = new Captcha($config);
