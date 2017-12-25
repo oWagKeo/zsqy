@@ -28,6 +28,7 @@ class Index extends Base
      */
     public function award(){
 
+        return $this->fetch();
     }
 
     /**
